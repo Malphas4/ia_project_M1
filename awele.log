@@ -1,15 +1,274 @@
 Mémoire totale : 832,0 MiB
 Instanciation du bot "Random"
-0 classes ont été trouvées
+7 classes ont été trouvées
+class awele.bot.demo.first.FirstBot
+class awele.bot.demo.random.RandomBot
+class awele.bot.random.RandomBot
+class awele.bot.demo.last.LastBot
+class awele.bot.demo.minmax.MinMaxBot
+class awele.bot.demo.knn2.Knn2Bot
+class awele.bot.demo.knn1.Knn1Bot
 
-0 bots ont été instanciés
-Durée du chargement : 00:00:00.900
-Mémoire utilisée : 5,7 MiB
+Bot 1/7
+Classe : awele.bot.demo.first.FirstBot
+Instanciation du bot "First"
+Nom du bot : First
+Auteur(s) : Alexandre Blansché
+Temps d'apprentissage : 00:00:00.000
+Durée d'une prise de décision : 00:00:00.000
+Usage mémoire : 0 B
+Usage mémoire maximum : 817,6 KiB
+
+Bot 2/7
+Classe : awele.bot.demo.random.RandomBot
+Instanciation du bot "Random"
+Nom du bot : Random
+Auteur(s) : Alexandre Blansché
+Temps d'apprentissage : 00:00:00.000
+Durée d'une prise de décision : 00:00:00.000
+Usage mémoire : 0 B
+Usage mémoire maximum : 301,3 KiB
+
+Bot 3/7
+Classe : awele.bot.random.RandomBot
+Instanciation du bot "Random"
+Nom du bot : Random
+Auteur(s) : Alexandre Blansché
+Temps d'apprentissage : 00:00:00.000
+Durée d'une prise de décision : 00:00:00.000
+Usage mémoire : 744 B
+Usage mémoire maximum : 301,3 KiB
+
+Bot 4/7
+Classe : awele.bot.demo.last.LastBot
+Instanciation du bot "Last"
+Nom du bot : Last
+Auteur(s) : Alexandre Blansché
+Temps d'apprentissage : 00:00:00.000
+Durée d'une prise de décision : 00:00:00.000
+Usage mémoire : 736 B
+Usage mémoire maximum : 301,3 KiB
+
+Bot 5/7
+Classe : awele.bot.demo.minmax.MinMaxBot
+Instanciation du bot "MinMax"
+Nom du bot : MinMax
+Auteur(s) : Alexandre Blansché
+Temps d'apprentissage : 00:00:00.000
+Durée d'une prise de décision : 00:00:00.114
+Usage mémoire : 679,3 KiB
+Usage mémoire maximum : 95,8 MiB
+
+Bot 6/7
+Classe : awele.bot.demo.knn2.Knn2Bot
+Instanciation du bot "k-NN2"
+Nom du bot : k-NN2
+Auteur(s) : Alexandre Blansché
+Temps d'apprentissage : 00:00:00.028
+Durée d'une prise de décision : 00:00:00.000
+Usage mémoire : 26,0 KiB
+Usage mémoire maximum : 1,8 MiB
+
+Bot 7/7
+Classe : awele.bot.demo.knn1.Knn1Bot
+Instanciation du bot "k-NN1"
+Nom du bot : k-NN1
+Auteur(s) : Alexandre Blansché
+Temps d'apprentissage : 00:00:00.002
+Durée d'une prise de décision : 00:00:00.000
+Usage mémoire : 12,5 KiB
+Usage mémoire maximum : 873,2 KiB
+
+7 bots ont été instanciés
+Durée du chargement : 00:00:05.111
+Mémoire utilisée : 6,1 MiB
 
 Que le championnat commence !
 
-Durée du championnat : 00:00:00.000
+Affrontement 1/21
+First vs. Random
+Score : 0.0 - 3.0
+Random a gagné
+Nombre de coups joués : 170.0 par match
+Durée : 00:00:00.000 par match
+Mémoire utilisée : 5,8 MiB
+
+Affrontement 2/21
+First vs. Random
+Score : 0.0 - 3.0
+Random a gagné
+Nombre de coups joués : 220.0 par match
+Durée : 00:00:00.001 par match
+Mémoire utilisée : 5,8 MiB
+
+Affrontement 3/21
+First vs. Last
+Score : 0.0 - 3.0
+Last a gagné
+Nombre de coups joués : 291.5 par match
+Durée : 00:00:00.000 par match
+Mémoire utilisée : 5,8 MiB
+
+Affrontement 4/21
+First vs. MinMax
+Score : 0.0 - 3.0
+MinMax a gagné
+Nombre de coups joués : 47.5 par match
+Durée : 00:00:02.178 par match
+Mémoire utilisée : 5,8 MiB
+
+Affrontement 5/21
+First vs. k-NN2
+Score : 0.0 - 3.0
+k-NN2 a gagné
+Nombre de coups joués : 169.0 par match
+Durée : 00:00:00.003 par match
+Mémoire utilisée : 5,8 MiB
+
+Affrontement 6/21
+First vs. k-NN1
+Score : 0.0 - 3.0
+k-NN1 a gagné
+Nombre de coups joués : 201.0 par match
+Durée : 00:00:00.002 par match
+Mémoire utilisée : 5,8 MiB
+
+Affrontement 7/21
+Random vs. Random
+Score : 0.0 - 3.0
+Random a gagné
+Nombre de coups joués : 117.0 par match
+Durée : 00:00:00.000 par match
+Mémoire utilisée : 5,8 MiB
+
+Affrontement 8/21
+Random vs. Last
+Score : 0.0 - 3.0
+Last a gagné
+Nombre de coups joués : 106.5 par match
+Durée : 00:00:00.000 par match
+Mémoire utilisée : 5,8 MiB
+
+Affrontement 9/21
+Random vs. MinMax
+Score : 0.0 - 3.0
+MinMax a gagné
+Nombre de coups joués : 42.5 par match
+Durée : 00:00:01.593 par match
+Mémoire utilisée : 5,8 MiB
+
+Affrontement 10/21
+Random vs. k-NN2
+Score : 0.0 - 3.0
+k-NN2 a gagné
+Nombre de coups joués : 97.0 par match
+Durée : 00:00:00.001 par match
+Mémoire utilisée : 5,8 MiB
+
+Affrontement 11/21
+Random vs. k-NN1
+Score : 3.0 - 0.0
+Random a gagné
+Nombre de coups joués : 55.5 par match
+Durée : 00:00:00.001 par match
+Mémoire utilisée : 5,8 MiB
+
+Affrontement 12/21
+Random vs. Last
+Score : 0.0 - 3.0
+Last a gagné
+Nombre de coups joués : 161.0 par match
+Durée : 00:00:00.000 par match
+Mémoire utilisée : 5,8 MiB
+
+Affrontement 13/21
+Random vs. MinMax
+Score : 0.0 - 3.0
+MinMax a gagné
+Nombre de coups joués : 26.5 par match
+Durée : 00:00:01.094 par match
+Mémoire utilisée : 5,8 MiB
+
+Affrontement 14/21
+Random vs. k-NN2
+Score : 0.0 - 3.0
+k-NN2 a gagné
+Nombre de coups joués : 84.5 par match
+Durée : 00:00:00.001 par match
+Mémoire utilisée : 5,8 MiB
+
+Affrontement 15/21
+Random vs. k-NN1
+Score : 0.0 - 3.0
+k-NN1 a gagné
+Nombre de coups joués : 85.5 par match
+Durée : 00:00:00.000 par match
+Mémoire utilisée : 5,8 MiB
+
+Affrontement 16/21
+Last vs. MinMax
+Score : 0.0 - 3.0
+MinMax a gagné
+Nombre de coups joués : 52.5 par match
+Durée : 00:00:01.800 par match
+Mémoire utilisée : 5,8 MiB
+
+Affrontement 17/21
+Last vs. k-NN2
+Score : 3.0 - 0.0
+Last a gagné
+Nombre de coups joués : 108.0 par match
+Durée : 00:00:00.001 par match
+Mémoire utilisée : 5,8 MiB
+
+Affrontement 18/21
+Last vs. k-NN1
+Score : 3.0 - 0.0
+Last a gagné
+Nombre de coups joués : 116.0 par match
+Durée : 00:00:00.000 par match
+Mémoire utilisée : 5,8 MiB
+
+Affrontement 19/21
+MinMax vs. k-NN2
+Score : 3.0 - 0.0
+MinMax a gagné
+Nombre de coups joués : 42.5 par match
+Durée : 00:00:01.622 par match
+Mémoire utilisée : 5,8 MiB
+
+Affrontement 20/21
+MinMax vs. k-NN1
+Score : 3.0 - 0.0
+MinMax a gagné
+Nombre de coups joués : 31.5 par match
+Durée : 00:00:01.339 par match
+Mémoire utilisée : 5,8 MiB
+
+Affrontement 21/21
+k-NN2 vs. k-NN1
+Score : 3.0 - 0.0
+k-NN2 a gagné
+Nombre de coups joués : 78.0 par match
+Durée : 00:00:00.001 par match
+Mémoire utilisée : 5,8 MiB
+
+Durée du championnat : 00:00:19.559
 
 Scores finaux :
+First : 0.0
+Random : 6.0
+Random : 6.0
+Last : 15.0
+MinMax : 18.0
+k-NN2 : 12.0
+k-NN1 : 6.0
 
 Rangs :
+1. MinMax : 18.0
+2. Last : 15.0
+3. k-NN2 : 12.0
+4. k-NN1 : 6.0
+5. Random : 6.0
+6. Random : 6.0
+7. First : 0.0
