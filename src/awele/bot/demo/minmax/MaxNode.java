@@ -21,7 +21,7 @@ public class MaxNode extends MinMaxNode
      * Constructeur d'un noeud interne
      * @param board La situation de jeu pour le noeud
      * @param depth La profondeur du noeud
-     * @param alphabeta Le seuil pour la coupe alpha-beta
+     * @param alpha, beta Le seuil pour la coupe alpha-beta
      */
     MaxNode (Board board, int depth, double alpha, double beta)
     {
