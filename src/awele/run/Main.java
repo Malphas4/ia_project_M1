@@ -39,7 +39,8 @@ public final class Main extends OutputWriter
     //private static final int NB_RUNS = 100;
     private static final int NB_RUNS = 1;
     private static final int MAX_LEARNING_TIME = 1000 * 60 * 60 * 1; // 1 h
-    private static final int MAX_DECISION_TIME = 200; // 200 ms
+    private static final int MAX_DECISION_TIME = 00; // 200 ms a la base mais c'est 100 maintenant
+    //+-15/20%
     private static final int MAX_MEMORY = 1024 * 1024 * 64; // 64 MiB
     private static final int MAX_TOTAL_MEMORY = 1024 * 1024 * 1024; // 1 GiB
 
