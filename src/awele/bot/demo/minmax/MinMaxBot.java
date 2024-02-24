@@ -1,7 +1,7 @@
 package awele.bot.demo.minmax;
 
 import awele.bot.DemoBot;
-Correction erreursimport awele.core.Board;
+import awele.core.Board;
 import awele.core.InvalidBotException;
 
 /**
