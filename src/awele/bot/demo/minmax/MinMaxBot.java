@@ -1,9 +1,7 @@
 package awele.bot.demo.minmax;
 
 import awele.bot.DemoBot;
-import awele.bot.competitor.MDTf.MDTfNode;
-import awele.bot.competitor.MDTf.MTDf;
-import awele.core.Board;
+Correction erreursimport awele.core.Board;
 import awele.core.InvalidBotException;
 
 /**
@@ -46,8 +44,8 @@ public class MinMaxBot extends DemoBot
     @Override
     public double [] getDecision (Board board)
     {
-        MDTfNode.initialize (board, MinMaxBot.MAX_DEPTH);
-        return new MDtfNode(board).getDecision ();
+        MinMaxNode.initialize (board, MinMaxBot.MAX_DEPTH);
+        return new MaxNode (board).getDecision ();
     }
 
     /**

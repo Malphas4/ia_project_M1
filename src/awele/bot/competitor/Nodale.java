@@ -104,7 +104,7 @@ public abstract class Nodale {
     /**
      * Initialisation
      */
-    protected static void initialize(Board board, int maxDepth) {
+    public static void initialize(Board board, int maxDepth) {
         Nodale.maxDepth = maxDepth;
         Nodale.player = board.getCurrentPlayer();
     }
