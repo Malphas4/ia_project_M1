@@ -52,7 +52,6 @@ public class MTDf extends ChampionBot {
     }//*
                 return g;
     }
-}
     /*
     Original Pascal pseudo code by Aske Plaat:
 
