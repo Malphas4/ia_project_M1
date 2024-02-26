@@ -40,7 +40,8 @@ public class MTDf extends ChampionBot {
         MDTfNode root= new MDTfNode(board);
         this.initialize();
         try {
-            return  MTDfix(root, _moves,0,MTDf.MAX_DEPTH).getDecision ();
+              MTDfix(root, _moves,0,MTDf.MAX_DEPTH);
+         //   return  MTDfix(root, _moves,0,MTDf.MAX_DEPTH).getDecision ();
         } catch (InvalidBotException e) {
             throw new RuntimeException(e);
         }
