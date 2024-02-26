@@ -2,15 +2,17 @@ package awele.bot.competitor.MDTf;
 
 import awele.bot.ChampionBot;
 import awele.core.Board;
+import awele.core.InvalidBotException;
 
 public class MTDf extends ChampionBot {
 
 
-    MTDf() {
+    MTDf() throws InvalidBotException {
         this.setBotName("MTDf");
-        this.setAuthors("Weber","Ly");
+        this.setAuthors("Weber", "Ly");
 
     }
+
     @Override
     public void initialize() {
 
@@ -30,6 +32,27 @@ public class MTDf extends ChampionBot {
     public void learn() {
 
     }
+
+    int MTDfix(Board root, MoveList moves, int f, int d) {
+    int  g = f;
+    int low = 0; // nombre minimum de graines
+    int upp = 48;// nombre max de graines
+    do {
+        bestMove = moves.getFirst();//*
+        bestValue = g;//*
+        int gamma = (g == low ? g + 1 : g);
+        g = rootMT(root, moves, gamma, d); // post: moves have bound values
+        if (g < gamma) upp = g;
+        else low = g;
+        moves.sort(); // stable sort descending
+    } while (low < upp);
+    if (g < gamma && bestMove != moves.getFirst()) {//*
+        moves.putFirst(bestMove);//*
+        g = bestValue;//*
+    }//*
+                return g;
+    }
+}
     /*
     Original Pascal pseudo code by Aske Plaat:
 
