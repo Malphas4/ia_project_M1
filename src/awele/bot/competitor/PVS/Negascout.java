@@ -3,7 +3,13 @@ package awele.bot.competitor.PVS;
 import awele.bot.CompetitorBot;
 import awele.core.Board;
 
-public class Negascout extends CompetitorBot {
+public class Negascout/* extends CompetitorBot*/ {/*
+
+    public GeneBot() throws InvalidBotException {
+        setBotName("Negascout");
+        setAuthors("Rozen & Malphas");
+    }
+
     @Override
     public void initialize() {
 

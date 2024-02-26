@@ -1,10 +1,11 @@
 package awele.bot.competitor.segen;
 
+import awele.bot.ChampionBot;
 import awele.bot.CompetitorBot;
 import awele.core.Board;
 import awele.core.InvalidBotException;
 
-public class SEGEN extends CompetitorBot {
+public class SEGEN extends ChampionBot {
 
     private final static double SEUIL = 2.0;
 

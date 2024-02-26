@@ -1,9 +1,16 @@
 package awele.bot.competitor.MDTf;
 
 import awele.bot.ChampionBot;
+import awele.bot.CompetitorBot;
 import awele.core.Board;
+import awele.core.InvalidBotException;
 
-public class MTDf extends ChampionBot {
+public class MTDf extends CompetitorBot {
+
+    public MTDf() throws InvalidBotException {
+        setBotName("MTDf");
+        setAuthors("Rozen & Malphas");
+    }
     @Override
     public void initialize() {
 

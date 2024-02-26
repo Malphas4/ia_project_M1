@@ -1,5 +1,7 @@
 package awele.bot.demo.last;
 
+import awele.bot.ChampionBot;
+import awele.bot.CompetitorBot;
 import awele.bot.DemoBot;
 import awele.core.Board;
 import awele.core.InvalidBotException;
@@ -8,7 +10,7 @@ import awele.core.InvalidBotException;
  * @author Alexandre Blansché
  * Bot qui joue toujours le coup le plus à gauche
  */
-public class LastBot extends DemoBot
+public class LastBot extends ChampionBot
 {
     /**
      * @throws InvalidBotException

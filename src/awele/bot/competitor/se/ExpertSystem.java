@@ -1,10 +1,12 @@
 package awele.bot.competitor.se;
 
+import awele.bot.ChampionBot;
 import awele.bot.CompetitorBot;
+import awele.bot.DemoBot;
 import awele.core.Board;
 import awele.core.InvalidBotException;
 
-public class ExpertSystem extends CompetitorBot {
+public class ExpertSystem extends ChampionBot {
 
     public ExpertSystem() throws InvalidBotException {
         setBotName("SE Bot");

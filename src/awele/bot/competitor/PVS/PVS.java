@@ -5,7 +5,7 @@ import awele.core.Board;
 
 import static java.lang.Math.max;
 
-public class PVS extends CompetitorBot {
+public class PVS /* extends CompetitorBot*/ {/*
     @Override
     public void initialize() {
 
