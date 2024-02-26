@@ -92,6 +92,9 @@ public abstract class Nodale {
             }*/
     }
 
+    public Nodale(Board board, int depth, int alpha, int beta) {
+    }
+
     private Nodale get_childs(int i) {
         return childs.get(i);
     }

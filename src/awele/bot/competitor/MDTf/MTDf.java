@@ -1,14 +1,26 @@
 package awele.bot.competitor.MDTf;
 
 import awele.bot.ChampionBot;
+import awele.bot.demo.minmax.MaxNode;
+import awele.bot.demo.minmax.MinMaxBot;
+import awele.bot.demo.minmax.MinMaxNode;
 import awele.core.Board;
 import awele.core.InvalidBotException;
+
+import java.util.ArrayList;
+
+import static java.lang.Math.max;
+import static java.lang.Math.min;
 
 public class MTDf extends ChampionBot {
 
 
+    private static final int MAX_DEPTH = 6;
+    private static final int MAXNODE = 50;
+    public ArrayList<move> _moves=new ArrayList<>();
+
     MTDf() throws InvalidBotException {
-        this.setBotName("MTDf");
+        this.setBotName("MTD-f");
         this.setAuthors("Weber", "Ly");
 
     }
@@ -25,7 +37,9 @@ public class MTDf extends ChampionBot {
 
     @Override
     public double[] getDecision(Board board) {
-        return new double[0];
+        MDTfNode root= new MDTfNode(board);
+        this.initialize();
+        return  MTDfix(root, _moves,0,MTDf.MAX_DEPTH).getDecision ();
     }
 
     @Override
@@ -33,25 +47,81 @@ public class MTDf extends ChampionBot {
 
     }
 
-    int MTDfix(Board root, MoveList moves, int f, int d) {
+    int MTDfix(MDTfNode root, ArrayList<move> moves, int f, int d) {
     int  g = f;
     int low = 0; // nombre minimum de graines
     int upp = 48;// nombre max de graines
-    do {
-        bestMove = moves.getFirst();//*
+    int bestValue;
+    int gamma;
+    move bestMove;
+        do {
+        bestMove = moves.get(moves.size()-1);//*
         bestValue = g;//*
-        int gamma = (g == low ? g + 1 : g);
-        g = rootMT(root, moves, gamma, d); // post: moves have bound values
+        gamma = (g == low ? g + 1 : g);
+       // g = rootMT(root, moves, gamma, d); // post: moves have bound values
+       g = AlphaBetaWithMemory(root, root.alpha(), root.beta(), d); // JU'ai aps trouvé la fonction rootMT en ligne le papier de 2018  est a lire/
+        // site du chercheur https://jhorssen.home.xs4all.nl/Maximus/research/mtdf/index.htm
         if (g < gamma) upp = g;
         else low = g;
-        moves.sort(); // stable sort descending
+        moves.sort(move.get_score()); // stable sort descending
     } while (low < upp);
-    if (g < gamma && bestMove != moves.getFirst()) {//*
-        moves.putFirst(bestMove);//*
+    if (g < gamma && bestMove != moves.get(moves.size()-1)) {//*
+        moves.add(bestMove);//*
         g = bestValue;//*
     }//*
                 return g;
     }
+
+
+    int AlphaBetaWithMemory(MDTfNode n , int alpha ,int  beta ,  int d) {
+    int g;
+    if retrieve(n) == OK /* Transposition table lookup */ {
+        if n.lowerbound >= beta  return n.lowerbound;
+        if n.upperbound <= alpha  return n.upperbound;
+        alpha=max(alpha, n.lowerbound);
+        beta=min(beta, n.upperbound);
+        if d == 0  g ==evaluate(n); /* leaf node */
+    }
+    else if (n == MAXNODE) {
+            g = -99999;
+        int a = alpha; /* save original alpha value */
+        MDTfNode c=firstchild(n);
+        while ((g < beta) && (c != NOCHILD)){
+                g=max(g, AlphaBetaWithMemory(c, a, beta, d - 1));
+                a=max(a, g);
+                c=nextbrother(c);
+            }
+    } else {/* n is a MINNODE */
+            g = 9999;
+            b = beta; /* save original beta value */
+            c = firstchild(n);
+            while ((g > alpha) && (c != NOCHILD)) {
+                g = min(g, AlphaBetaWithMemory(c, alpha, b, d - 1));
+                b = min(b, g);
+                c = nextbrother(c);
+            }
+            /* Traditional transposition table storing of bounds */
+            /* Fail low result implies an upper bound */
+            if (g <= alpha) n.upperbound=g;
+            store n.upperbound;
+            /* Found an accurate minimax value - will not occur if called with zero window */
+            if (g > alpha && g < beta){
+                n.lowerbound = g;
+                n.upperbound = g;
+                store n.lowerbound, n.upperbound;
+            }
+            /* Fail high result implies a lower bound */
+            if (g >= beta) {
+                n.lowerbound = g;
+                store n.lowerbound;
+            }
+        }
+    return g;
+
+
+    }
+
+
     /*
     Original Pascal pseudo code by Aske Plaat:
 
@@ -133,3 +203,40 @@ return g;
 *
 *
 * */
+
+/*
+*
+*
+* function AlphaBetaWithMemory(n : node_type; alpha , beta , d : integer) : integer;
+
+    if retrieve(n) == OK then /* Transposition table lookup
+        if n.lowerbound >= beta then return n.lowerbound;
+                if n.upperbound <= alpha then return n.upperbound;
+                alpha := max(alpha, n.lowerbound);
+                beta := min(beta, n.upperbound);
+                if d == 0 then g := evaluate(n); /* leaf node
+                else if n == MAXNODE then
+                g := -INFINITY; a := alpha; /* save original alpha value
+                c := firstchild(n);
+                while (g < beta) and (c != NOCHILD) do
+        g := max(g, AlphaBetaWithMemory(c, a, beta, d - 1));
+        a := max(a, g);
+        c := nextbrother(c);
+        else /* n is a MINNODE
+        g := +INFINITY; b := beta; /* save original beta value
+        c := firstchild(n);
+        while (g > alpha) and (c != NOCHILD) do
+        g := min(g, AlphaBetaWithMemory(c, alpha, b, d - 1));
+        b := min(b, g);
+        c := nextbrother(c);
+        /* Traditional transposition table storing of bounds
+        /* Fail low result implies an upper bound
+        if g <= alpha then n.upperbound := g; store n.upperbound;
+        /* Found an accurate minimax value - will not occur if called with zero window
+        if g >  alpha and g < beta then
+        n.lowerbound := g; n.upperbound := g; store n.lowerbound, n.upperbound;
+        /* Fail high result implies a lower bound
+        if g >= beta then n.lowerbound := g; store n.lowerbound;
+        return g;
+        * */
+

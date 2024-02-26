@@ -7,9 +7,16 @@ import awele.core.Board;
 public class MDTfNode  extends Nodale
 {
     byte color=1;
+    int lowerbound,upperbound;
+    Board stateBoard;
     public MDTfNode (Board board, int depth, double alpha, double beta,byte color)
     {
         super (board, 6, 0, 0, color);
+    }
+
+    public MDTfNode(Board board) {
+//        super(board, 6, 24.0, 0.0, 1);
+        super (board, 24, 0, 0);
     }
 
     @Override
@@ -65,5 +72,14 @@ public class MDTfNode  extends Nodale
     protected Nodale createNode (Board board, int depth, double alpha, double beta,byte color)
     {
         return new MDTfNode (board, depth, alpha, beta, color);
+    }
+
+    public int alpha() {
+        return upperbound;
+    }
+
+    public int beta() {
+        return lowerbound;
+
     }
 }
