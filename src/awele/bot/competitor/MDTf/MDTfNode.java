@@ -2,13 +2,17 @@ package awele.bot.competitor.MDTf;
 
 import awele.bot.competitor.Nodale;
 import awele.bot.demo.minmax.MinMaxNode;
+import awele.bot.demo.minmax.MinNode;
 import awele.core.Board;
+import awele.core.InvalidBotException;
 
 public class MDTfNode  extends Nodale
 {
     byte color=1;
-    int lowerbound,upperbound;
+   public int lowerbound,upperbound;
     Board stateBoard;
+    private int depth;
+
     public MDTfNode (Board board, int depth, double alpha, double beta,byte color)
     {
         super (board, 6, 0, 0, color);
@@ -50,12 +54,6 @@ public class MDTfNode  extends Nodale
     }
 
 
-    protected MDTfNode getNextNode(Board board, int depth, double alpha, double beta) {
-        return null;
-    }
-
-
-
    // @Override
     protected double minmax (double eval1, double eval2)
     {
@@ -81,5 +79,23 @@ public class MDTfNode  extends Nodale
     public int beta() {
         return lowerbound;
 
+    }
+    //@Override
+    protected MDTfNode getNextNode (Board board, int depth, double alpha, double beta)
+    {
+        return new MDTfNode(board, depth, alpha, beta, (byte) -color);//TODO changer en int peut etre, byte negatif? 0
+    }
+
+    public MDTfNode firstchild() throws InvalidBotException {
+        Board b = (Board) this.stateBoard.clone();
+        double[]score ={1.0,0.0,0.0,0.0};
+
+        b.playMoveSimulationBoard(b.getCurrentPlayer()+1,score);
+        return new MDTfNode(b, this.depth+1, this.alpha, this.beta, (byte) -color);
+
+    }
+
+    public MDTfNode getBrother() {
+        return null;
     }
 }

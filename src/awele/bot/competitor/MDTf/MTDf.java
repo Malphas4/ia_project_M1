@@ -73,32 +73,38 @@ public class MTDf extends ChampionBot {
     }
 
 
-    int AlphaBetaWithMemory(MDTfNode n , int alpha ,int  beta ,  int d) {
+    int AlphaBetaWithMemory(MDTfNode n , int alpha ,int  beta ,  int d) throws InvalidBotException {
     int g;
+    int b,a;
+    MDTfNode c;
     if retrieve(n) == OK /* Transposition table lookup */ {
-        if n.lowerbound >= beta  return n.lowerbound;
-        if n.upperbound <= alpha  return n.upperbound;
+        if (n.lowerbound >= beta)  return n.lowerbound;
+        if (n.upperbound <= alpha ) return n.upperbound;
         alpha=max(alpha, n.lowerbound);
         beta=min(beta, n.upperbound);
-        if d == 0  g ==evaluate(n); /* leaf node */
+        //if (d == 0)  g =evaluate(n); /* leaf node */
+        if (d == 0)  g =n.getEvaluation(); /* leaf node */
     }
-    else if (n == MAXNODE) {
+    else if (n.nb == this.MAXNODE) {
             g = -99999;
-        int a = alpha; /* save original alpha value */
-        MDTfNode c=firstchild(n);
+         a = alpha; /* save original alpha value */
+        //MDTfNode c=firstchild(n);
+         c=n.firstchild();
         while ((g < beta) && (c != NOCHILD)){
                 g=max(g, AlphaBetaWithMemory(c, a, beta, d - 1));
                 a=max(a, g);
-                c=nextbrother(c);
+//                c=nextbrother(c);
+                c=c.getBrother();
             }
     } else {/* n is a MINNODE */
             g = 9999;
             b = beta; /* save original beta value */
-            c = firstchild(n);
+            c = n.firstchild();
             while ((g > alpha) && (c != NOCHILD)) {
                 g = min(g, AlphaBetaWithMemory(c, alpha, b, d - 1));
                 b = min(b, g);
-                c = nextbrother(c);
+//                c = nextbrother(c);
+                c = c.nextbrother();
             }
             /* Traditional transposition table storing of bounds */
             /* Fail low result implies an upper bound */

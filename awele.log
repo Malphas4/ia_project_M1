@@ -1,15 +1,17 @@
-Mémoire totale : 832,0 MiB
+Mémoire totale : 4,0 GiB
 Instanciation du bot "Random"
-7 classes ont été trouvées
+9 classes ont été trouvées
 class awele.bot.demo.first.FirstBot
 class awele.bot.demo.random.RandomBot
 class awele.bot.random.RandomBot
 class awele.bot.demo.last.LastBot
 class awele.bot.demo.minmax.MinMaxBot
 class awele.bot.demo.knn2.Knn2Bot
+class awele.bot.competitor.segen.SEGEN
 class awele.bot.demo.knn1.Knn1Bot
+class awele.bot.competitor.se.ExpertSystem
 
-Bot 1/7
+Bot 1/9
 Classe : awele.bot.demo.first.FirstBot
 Instanciation du bot "First"
 Nom du bot : First
@@ -17,258 +19,335 @@ Auteur(s) : Alexandre Blansché
 Temps d'apprentissage : 00:00:00.000
 Durée d'une prise de décision : 00:00:00.000
 Usage mémoire : 0 B
-Usage mémoire maximum : 817,6 KiB
+Usage mémoire maximum : 428,8 KiB
 
-Bot 2/7
+Bot 2/9
 Classe : awele.bot.demo.random.RandomBot
 Instanciation du bot "Random"
 Nom du bot : Random
 Auteur(s) : Alexandre Blansché
 Temps d'apprentissage : 00:00:00.000
 Durée d'une prise de décision : 00:00:00.000
-Usage mémoire : 0 B
-Usage mémoire maximum : 301,3 KiB
+Usage mémoire : 352 B
+Usage mémoire maximum : 403,8 KiB
 
-Bot 3/7
+Bot 3/9
 Classe : awele.bot.random.RandomBot
 Instanciation du bot "Random"
 Nom du bot : Random
 Auteur(s) : Alexandre Blansché
 Temps d'apprentissage : 00:00:00.000
 Durée d'une prise de décision : 00:00:00.000
-Usage mémoire : 744 B
-Usage mémoire maximum : 301,3 KiB
+Usage mémoire : 616 B
+Usage mémoire maximum : 387,8 KiB
 
-Bot 4/7
+Bot 4/9
 Classe : awele.bot.demo.last.LastBot
 Instanciation du bot "Last"
 Nom du bot : Last
 Auteur(s) : Alexandre Blansché
 Temps d'apprentissage : 00:00:00.000
 Durée d'une prise de décision : 00:00:00.000
-Usage mémoire : 736 B
-Usage mémoire maximum : 301,3 KiB
+Usage mémoire : 608 B
+Usage mémoire maximum : 387,8 KiB
 
-Bot 5/7
+Bot 5/9
 Classe : awele.bot.demo.minmax.MinMaxBot
 Instanciation du bot "MinMax"
 Nom du bot : MinMax
 Auteur(s) : Alexandre Blansché
 Temps d'apprentissage : 00:00:00.000
-Durée d'une prise de décision : 00:00:00.114
-Usage mémoire : 679,3 KiB
-Usage mémoire maximum : 95,8 MiB
+Durée d'une prise de décision : 00:00:00.079
+Usage mémoire : 415,7 KiB
+Usage mémoire maximum : 110,4 MiB
 
-Bot 6/7
+Bot 6/9
 Classe : awele.bot.demo.knn2.Knn2Bot
 Instanciation du bot "k-NN2"
 Nom du bot : k-NN2
 Auteur(s) : Alexandre Blansché
-Temps d'apprentissage : 00:00:00.028
+Temps d'apprentissage : 00:00:00.010
 Durée d'une prise de décision : 00:00:00.000
-Usage mémoire : 26,0 KiB
-Usage mémoire maximum : 1,8 MiB
+Usage mémoire : 25,7 KiB
+Usage mémoire maximum : 1,4 MiB
 
-Bot 7/7
+Bot 7/9
+Classe : awele.bot.competitor.segen.SEGEN
+Instanciation du bot "SEGEN"
+Nom du bot : SEGEN
+Auteur(s) : Rozen & Malphas
+Temps d'apprentissage : 00:00:00.000
+Bot "awele.bot.competitor.segen.SEGEN" disqualifié : ne peut pas être instancié
+java.lang.ArrayIndexOutOfBoundsException: Index 0 out of bounds for length 0
+
+Bot 8/9
 Classe : awele.bot.demo.knn1.Knn1Bot
 Instanciation du bot "k-NN1"
 Nom du bot : k-NN1
 Auteur(s) : Alexandre Blansché
-Temps d'apprentissage : 00:00:00.002
+Temps d'apprentissage : 00:00:00.003
 Durée d'une prise de décision : 00:00:00.000
-Usage mémoire : 12,5 KiB
-Usage mémoire maximum : 873,2 KiB
+Usage mémoire : 12,9 KiB
+Usage mémoire maximum : 1022,9 KiB
 
-7 bots ont été instanciés
-Durée du chargement : 00:00:05.111
-Mémoire utilisée : 6,1 MiB
+Bot 9/9
+Classe : awele.bot.competitor.se.ExpertSystem
+Instanciation du bot "SE Bot"
+Nom du bot : SE Bot
+Auteur(s) : Rozen
+Temps d'apprentissage : 00:00:00.000
+Durée d'une prise de décision : 00:00:00.000
+Usage mémoire : 656 B
+Usage mémoire maximum : 1021,7 KiB
+
+8 bots ont été instanciés
+Durée du chargement : 00:00:03.019
+Mémoire utilisée : 5,2 MiB
 
 Que le championnat commence !
 
-Affrontement 1/21
+Affrontement 1/28
 First vs. Random
-Score : 0.0 - 3.0
+Score : 1.37 - 1.61
 Random a gagné
-Nombre de coups joués : 170.0 par match
+Nombre de coups joués : 160.695 par match
 Durée : 00:00:00.000 par match
-Mémoire utilisée : 5,8 MiB
+Mémoire utilisée : 5,0 MiB
 
-Affrontement 2/21
+Affrontement 2/28
 First vs. Random
-Score : 0.0 - 3.0
+Score : 1.46 - 1.52
 Random a gagné
-Nombre de coups joués : 220.0 par match
-Durée : 00:00:00.001 par match
-Mémoire utilisée : 5,8 MiB
+Nombre de coups joués : 158.665 par match
+Durée : 00:00:00.000 par match
+Mémoire utilisée : 5,0 MiB
 
-Affrontement 3/21
+Affrontement 3/28
 First vs. Last
 Score : 0.0 - 3.0
 Last a gagné
 Nombre de coups joués : 291.5 par match
 Durée : 00:00:00.000 par match
-Mémoire utilisée : 5,8 MiB
+Mémoire utilisée : 5,0 MiB
 
-Affrontement 4/21
+Affrontement 4/28
 First vs. MinMax
 Score : 0.0 - 3.0
 MinMax a gagné
-Nombre de coups joués : 47.5 par match
-Durée : 00:00:02.178 par match
-Mémoire utilisée : 5,8 MiB
+Nombre de coups joués : 41.02 par match
+Durée : 00:00:01.673 par match
+Mémoire utilisée : 5,0 MiB
 
-Affrontement 5/21
+Affrontement 5/28
 First vs. k-NN2
-Score : 0.0 - 3.0
+Score : 0.35 - 2.63
 k-NN2 a gagné
-Nombre de coups joués : 169.0 par match
-Durée : 00:00:00.003 par match
-Mémoire utilisée : 5,8 MiB
+Nombre de coups joués : 196.455 par match
+Durée : 00:00:00.001 par match
+Mémoire utilisée : 5,0 MiB
 
-Affrontement 6/21
+Affrontement 6/28
 First vs. k-NN1
-Score : 0.0 - 3.0
+Score : 0.68 - 2.3
 k-NN1 a gagné
-Nombre de coups joués : 201.0 par match
-Durée : 00:00:00.002 par match
-Mémoire utilisée : 5,8 MiB
+Nombre de coups joués : 200.17 par match
+Durée : 00:00:00.000 par match
+Mémoire utilisée : 5,0 MiB
 
-Affrontement 7/21
+Affrontement 7/28
+First vs. SE Bot
+Score : 0.32 - 2.66
+SE Bot a gagné
+Nombre de coups joués : 87.895 par match
+Durée : 00:00:00.000 par match
+Mémoire utilisée : 5,0 MiB
+
+Affrontement 8/28
 Random vs. Random
-Score : 0.0 - 3.0
+Score : 1.72 - 1.27
 Random a gagné
-Nombre de coups joués : 117.0 par match
+Nombre de coups joués : 95.875 par match
 Durée : 00:00:00.000 par match
-Mémoire utilisée : 5,8 MiB
+Mémoire utilisée : 5,0 MiB
 
-Affrontement 8/21
+Affrontement 9/28
 Random vs. Last
-Score : 0.0 - 3.0
+Score : 0.12 - 2.88
 Last a gagné
-Nombre de coups joués : 106.5 par match
+Nombre de coups joués : 107.03 par match
 Durée : 00:00:00.000 par match
-Mémoire utilisée : 5,8 MiB
+Mémoire utilisée : 5,0 MiB
 
-Affrontement 9/21
+Affrontement 10/28
 Random vs. MinMax
 Score : 0.0 - 3.0
 MinMax a gagné
-Nombre de coups joués : 42.5 par match
-Durée : 00:00:01.593 par match
-Mémoire utilisée : 5,8 MiB
+Nombre de coups joués : 35.34 par match
+Durée : 00:00:01.163 par match
+Mémoire utilisée : 5,0 MiB
 
-Affrontement 10/21
+Affrontement 11/28
 Random vs. k-NN2
-Score : 0.0 - 3.0
+Score : 0.29 - 2.69
 k-NN2 a gagné
-Nombre de coups joués : 97.0 par match
-Durée : 00:00:00.001 par match
-Mémoire utilisée : 5,8 MiB
-
-Affrontement 11/21
-Random vs. k-NN1
-Score : 3.0 - 0.0
-Random a gagné
-Nombre de coups joués : 55.5 par match
-Durée : 00:00:00.001 par match
-Mémoire utilisée : 5,8 MiB
-
-Affrontement 12/21
-Random vs. Last
-Score : 0.0 - 3.0
-Last a gagné
-Nombre de coups joués : 161.0 par match
+Nombre de coups joués : 79.305 par match
 Durée : 00:00:00.000 par match
-Mémoire utilisée : 5,8 MiB
+Mémoire utilisée : 5,0 MiB
 
-Affrontement 13/21
-Random vs. MinMax
-Score : 0.0 - 3.0
-MinMax a gagné
-Nombre de coups joués : 26.5 par match
-Durée : 00:00:01.094 par match
-Mémoire utilisée : 5,8 MiB
-
-Affrontement 14/21
-Random vs. k-NN2
-Score : 0.0 - 3.0
-k-NN2 a gagné
-Nombre de coups joués : 84.5 par match
-Durée : 00:00:00.001 par match
-Mémoire utilisée : 5,8 MiB
-
-Affrontement 15/21
+Affrontement 12/28
 Random vs. k-NN1
-Score : 0.0 - 3.0
+Score : 0.49 - 2.5
 k-NN1 a gagné
-Nombre de coups joués : 85.5 par match
+Nombre de coups joués : 75.715 par match
 Durée : 00:00:00.000 par match
-Mémoire utilisée : 5,8 MiB
+Mémoire utilisée : 5,0 MiB
 
-Affrontement 16/21
+Affrontement 13/28
+Random vs. SE Bot
+Score : 0.12 - 2.88
+SE Bot a gagné
+Nombre de coups joués : 52.475 par match
+Durée : 00:00:00.000 par match
+Mémoire utilisée : 5,0 MiB
+
+Affrontement 14/28
+Random vs. Last
+Score : 0.09 - 2.91
+Last a gagné
+Nombre de coups joués : 107.845 par match
+Durée : 00:00:00.000 par match
+Mémoire utilisée : 5,0 MiB
+
+Affrontement 15/28
+Random vs. MinMax
+Score : 0.0 - 3.0
+MinMax a gagné
+Nombre de coups joués : 35.28 par match
+Durée : 00:00:01.204 par match
+Mémoire utilisée : 5,0 MiB
+
+Affrontement 16/28
+Random vs. k-NN2
+Score : 0.42 - 2.58
+k-NN2 a gagné
+Nombre de coups joués : 78.015 par match
+Durée : 00:00:00.000 par match
+Mémoire utilisée : 5,0 MiB
+
+Affrontement 17/28
+Random vs. k-NN1
+Score : 0.54 - 2.46
+k-NN1 a gagné
+Nombre de coups joués : 77.64 par match
+Durée : 00:00:00.000 par match
+Mémoire utilisée : 5,0 MiB
+
+Affrontement 18/28
+Random vs. SE Bot
+Score : 0.21 - 2.79
+SE Bot a gagné
+Nombre de coups joués : 56.62 par match
+Durée : 00:00:00.000 par match
+Mémoire utilisée : 5,0 MiB
+
+Affrontement 19/28
 Last vs. MinMax
 Score : 0.0 - 3.0
 MinMax a gagné
-Nombre de coups joués : 52.5 par match
-Durée : 00:00:01.800 par match
-Mémoire utilisée : 5,8 MiB
+Nombre de coups joués : 55.21 par match
+Durée : 00:00:01.980 par match
+Mémoire utilisée : 5,0 MiB
 
-Affrontement 17/21
+Affrontement 20/28
 Last vs. k-NN2
-Score : 3.0 - 0.0
+Score : 2.77 - 0.22
 Last a gagné
-Nombre de coups joués : 108.0 par match
-Durée : 00:00:00.001 par match
-Mémoire utilisée : 5,8 MiB
-
-Affrontement 18/21
-Last vs. k-NN1
-Score : 3.0 - 0.0
-Last a gagné
-Nombre de coups joués : 116.0 par match
+Nombre de coups joués : 115.57 par match
 Durée : 00:00:00.000 par match
-Mémoire utilisée : 5,8 MiB
+Mémoire utilisée : 5,0 MiB
 
-Affrontement 19/21
+Affrontement 21/28
+Last vs. k-NN1
+Score : 2.7 - 0.3
+Last a gagné
+Nombre de coups joués : 124.24 par match
+Durée : 00:00:00.000 par match
+Mémoire utilisée : 5,0 MiB
+
+Affrontement 22/28
+Last vs. SE Bot
+Score : 2.17 - 0.82
+Last a gagné
+Nombre de coups joués : 87.08 par match
+Durée : 00:00:00.000 par match
+Mémoire utilisée : 5,0 MiB
+
+Affrontement 23/28
 MinMax vs. k-NN2
 Score : 3.0 - 0.0
 MinMax a gagné
-Nombre de coups joués : 42.5 par match
-Durée : 00:00:01.622 par match
-Mémoire utilisée : 5,8 MiB
+Nombre de coups joués : 39.84 par match
+Durée : 00:00:01.398 par match
+Mémoire utilisée : 5,0 MiB
 
-Affrontement 20/21
+Affrontement 24/28
 MinMax vs. k-NN1
 Score : 3.0 - 0.0
 MinMax a gagné
-Nombre de coups joués : 31.5 par match
-Durée : 00:00:01.339 par match
-Mémoire utilisée : 5,8 MiB
+Nombre de coups joués : 41.3 par match
+Durée : 00:00:01.484 par match
+Mémoire utilisée : 5,0 MiB
 
-Affrontement 21/21
-k-NN2 vs. k-NN1
+Affrontement 25/28
+MinMax vs. SE Bot
 Score : 3.0 - 0.0
-k-NN2 a gagné
-Nombre de coups joués : 78.0 par match
-Durée : 00:00:00.001 par match
-Mémoire utilisée : 5,8 MiB
+MinMax a gagné
+Nombre de coups joués : 34.23 par match
+Durée : 00:00:01.059 par match
+Mémoire utilisée : 5,0 MiB
 
-Durée du championnat : 00:00:19.559
+Affrontement 26/28
+k-NN2 vs. k-NN1
+Score : 1.31 - 1.67
+k-NN1 a gagné
+Nombre de coups joués : 83.215 par match
+Durée : 00:00:00.000 par match
+Mémoire utilisée : 5,0 MiB
+
+Affrontement 27/28
+k-NN2 vs. SE Bot
+Score : 0.6 - 2.37
+SE Bot a gagné
+Nombre de coups joués : 57.435 par match
+Durée : 00:00:00.000 par match
+Mémoire utilisée : 5,0 MiB
+
+Affrontement 28/28
+k-NN1 vs. SE Bot
+Score : 0.6 - 2.4
+SE Bot a gagné
+Nombre de coups joués : 54.16 par match
+Durée : 00:00:00.000 par match
+Mémoire utilisée : 5,0 MiB
+
+Durée du championnat : 00:33:15.544
 
 Scores finaux :
-First : 0.0
-Random : 6.0
-Random : 6.0
-Last : 15.0
-MinMax : 18.0
-k-NN2 : 12.0
-k-NN1 : 6.0
+First : 4.18
+Random : 4.35
+Random : 4.05
+Last : 16.43
+MinMax : 21.0
+k-NN2 : 10.03
+k-NN1 : 9.83
+SE Bot : 13.92
 
 Rangs :
-1. MinMax : 18.0
-2. Last : 15.0
-3. k-NN2 : 12.0
-4. k-NN1 : 6.0
-5. Random : 6.0
-6. Random : 6.0
-7. First : 0.0
+1. MinMax : 21.0
+2. Last : 16.43
+3. SE Bot : 13.92
+4. k-NN2 : 10.03
+5. k-NN1 : 9.83
+6. First : 4.35
+7. Random : 4.18
+8. Random : 4.05

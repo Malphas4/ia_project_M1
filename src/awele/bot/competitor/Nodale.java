@@ -17,6 +17,10 @@ public abstract class Nodale {
      * Numéro de joueur de l'IA
      */
     protected static int player;
+    public int nb;
+    protected Board board;
+    int depth; protected double alpha;
+    protected double beta; byte color;
 
     /**
      * Profondeur maximale
@@ -43,6 +47,12 @@ public abstract class Nodale {
      * @param beta  Le seuil pour la coupe beta
      */
     public Nodale(Board board, int depth, double alpha, double beta, byte color) {
+        this.beta=beta;
+        this.alpha=alpha;
+        this.color=color;
+        this.depth=depth;
+        this.board=board;
+
         /* On crée un tableau des évaluations des coups à jouer pour chaque situation possible */
 /*        this.decision = new int[Board.NB_HOLES];
         /* Initialisation de l'évaluation courante */
@@ -169,7 +179,7 @@ public abstract class Nodale {
      *
      * @return L'évaluation du noeud
      */
-    int getEvaluation() {
+    public int getEvaluation() {
         return this.evaluation;
     }
 
@@ -181,4 +191,6 @@ public abstract class Nodale {
     int[] getDecision() {
         return this.decision;
     }
+
+
 }
