@@ -42,54 +42,54 @@ public abstract class Nodale {
      * @param alpha Le seuil pour la coupe alpha
      * @param beta  Le seuil pour la coupe beta
      */
-    public Nodale(Board board, int depth, int alpha, int beta, int color) {
+    public Nodale(Board board, int depth, double alpha, double beta, byte color) {
         /* On crée un tableau des évaluations des coups à jouer pour chaque situation possible */
-        this.decision = new int[Board.NB_HOLES];
+/*        this.decision = new int[Board.NB_HOLES];
         /* Initialisation de l'évaluation courante */
-        this.evaluation = this.worst();
+/*        this.evaluation = this.worst();
         /* On parcourt toutes les coups possibles */
-        for (int i = 0; i < Board.NB_HOLES; i++)
+ /*       for (int i = 0; i < Board.NB_HOLES; i++)
             /* Si le coup est jouable */
-            if (board.getPlayerHoles()[i] != 0) {
+    /*        if (board.getPlayerHoles()[i] != 0) {
                 /* Sélection du coup à jouer */
-                double[] decision = new double[Board.NB_HOLES];
+      /*          double[] decision = new double[Board.NB_HOLES];
                 decision[i] = 1;
                 /* On copie la grille de jeu et on joue le coup sur la copie */
-                Board copy = (Board) board.clone();
+        /*        Board copy = (Board) board.clone();
                 try {
                     int score = copy.playMoveSimulationScore(copy.getCurrentPlayer(), decision);
                     copy = copy.playMoveSimulationBoard(copy.getCurrentPlayer(), decision);
                     /* Si la nouvelle situation de jeu est un coup qui met fin à la partie,
                        on évalue la situation actuelle */
-                    if ((score < 0) ||
+          /*          if ((score < 0) ||
                             (copy.getScore(Board.otherPlayer(copy.getCurrentPlayer())) >= 25) ||
                             (copy.getNbSeeds() <= 6))
                         this.decision[i] = this.diffScore(copy);
                         /* Sinon, on explore les coups suivants */
-                    else {
+            /*        else {
                         /* Si la profondeur maximale n'est pas atteinte */
-                        if (depth < Nodale.maxDepth) {
-                            /* On construit le noeud suivant */
-                            MinMaxNode child = this.getNextNode(copy, depth + 1, alpha, beta);
+             /*           if (depth < Nodale.maxDepth) {
+             /*               /* On construit le noeud suivant */
+              /*              MinMaxNode child = this.getNextNode(copy, depth + 1, alpha, beta);
                             /* On récupère l'évaluation du noeud fils */
                             //this.decision [i] = this.childs.getEvaluation ();
-                            this.decision[i] = this.get_childs(i).getEvaluation();
+                /*            this.decision[i] = this.get_childs(i).getEvaluation();
                         }
                         /* Sinon (si la profondeur maximale est atteinte), on évalue la situation actuelle */
-                        else
+                /*        else
                             this.decision[i] = this.diffScore(copy);
                     }
                     /* L'évaluation courante du noeud est mise à jour, selon le type de noeud (MinNode ou MaxNode) */
-                    this.evaluation = this.minmax(this.decision[i], this.evaluation);
+             /*       this.evaluation = this.minmax(this.decision[i], this.evaluation);
                     /* Coupe alpha-beta */
-                    if (depth > 0) {
+             /*       if (depth > 0) {
                         alpha = this.alpha(this.evaluation, alpha);
                         beta = this.beta(this.evaluation, beta);
                     }
                 } catch (InvalidBotException e) {
                     this.decision[i] = 0;
                 }
-            }
+            }*/
     }
 
     private Nodale get_childs(int i) {
@@ -104,7 +104,7 @@ public abstract class Nodale {
     /**
      * Initialisation
      */
-    protected static void initialize(Board board, int maxDepth) {
+    public static void initialize(Board board, int maxDepth) {
         Nodale.maxDepth = maxDepth;
         Nodale.player = board.getCurrentPlayer();
     }
@@ -159,7 +159,7 @@ public abstract class Nodale {
      * @param beta  Le seuil pour la coupe beta
      * @return Un noeud (MinNode ou MaxNode) du niveau suivant
      */
-    protected abstract MinMaxNode getNextNode(Board board, int depth, int alpha, int beta);
+    protected abstract Nodale getNextNode(Board board, int depth, int alpha, int beta);
 
     /**
      * L'évaluation du noeud

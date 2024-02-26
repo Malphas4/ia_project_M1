@@ -11,7 +11,7 @@ public class NodePVS extends Nodale {
     public NodePVS pred;
     public NodePVS next;
     public NodePVS[] childs;
-    public NodePVS(Board b,int depth,int alpha,int beta,int color,NodePVS pred, NodePVS next, NodePVS ... childs) {
+    public NodePVS(Board b,int depth,int alpha,int beta,byte color,NodePVS pred, NodePVS next, NodePVS ... childs) {
         super(b,depth,alpha,beta,color);
         this.pred = pred;
         this.next = next;
@@ -58,8 +58,7 @@ public class NodePVS extends Nodale {
         return false;
     }
 
-    @Override
-    protected MinMaxNode getNextNode(Board board, int depth, int alpha, int beta) {
+    protected NodePVS getNextNode(Board board, int depth, int alpha, int beta) {
         return null;
     }
 
