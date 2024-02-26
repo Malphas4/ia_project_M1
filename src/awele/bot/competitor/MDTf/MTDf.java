@@ -39,7 +39,13 @@ public class MTDf extends ChampionBot {
     public double[] getDecision(Board board) {
         MDTfNode root= new MDTfNode(board);
         this.initialize();
-        return  MTDfix(root, _moves,0,MTDf.MAX_DEPTH).getDecision ();
+        try {
+            return  MTDfix(root, _moves,0,MTDf.MAX_DEPTH).getDecision ();
+        } catch (InvalidBotException e) {
+            throw new RuntimeException(e);
+        }
+        double[] d  ={0.0,1.1};
+        return d;
     }
 
     @Override
@@ -47,7 +53,7 @@ public class MTDf extends ChampionBot {
 
     }
 
-    int MTDfix(MDTfNode root, ArrayList<move> moves, int f, int d) {
+    int MTDfix(MDTfNode root, ArrayList<move> moves, int f, int d) throws InvalidBotException {
     int  g = f;
     int low = 0; // nombre minimum de graines
     int upp = 48;// nombre max de graines
@@ -74,23 +80,23 @@ public class MTDf extends ChampionBot {
 
 
     int AlphaBetaWithMemory(MDTfNode n , int alpha ,int  beta ,  int d) throws InvalidBotException {
-    int g;
+    int g=999;
     int b,a;
     MDTfNode c;
-    if retrieve(n) == OK /* Transposition table lookup */ {
+    if (retrieve(n) ) /* Transposition table lookup */ {
+//    if (retrieve(n) == OK) /* Transposition table lookup */ {
         if (n.lowerbound >= beta)  return n.lowerbound;
         if (n.upperbound <= alpha ) return n.upperbound;
         alpha=max(alpha, n.lowerbound);
         beta=min(beta, n.upperbound);
         //if (d == 0)  g =evaluate(n); /* leaf node */
         if (d == 0)  g =n.getEvaluation(); /* leaf node */
-    }
-    else if (n.nb == this.MAXNODE) {
+    }else if(n.nb == this.MAXNODE) {
             g = -99999;
          a = alpha; /* save original alpha value */
         //MDTfNode c=firstchild(n);
          c=n.firstchild();
-        while ((g < beta) && (c != NOCHILD)){
+        while ((g < beta) && (c.victory())){//c.victory() c != NOCHILD
                 g=max(g, AlphaBetaWithMemory(c, a, beta, d - 1));
                 a=max(a, g);
 //                c=nextbrother(c);
@@ -100,31 +106,35 @@ public class MTDf extends ChampionBot {
             g = 9999;
             b = beta; /* save original beta value */
             c = n.firstchild();
-            while ((g > alpha) && (c != NOCHILD)) {
+            while ((g > alpha) && (c.victory() != true)) {//c.victory() c != NOCHILD
                 g = min(g, AlphaBetaWithMemory(c, alpha, b, d - 1));
                 b = min(b, g);
 //                c = nextbrother(c);
-                c = c.nextbrother();
+            //    c = c.nextbrother();
             }
             /* Traditional transposition table storing of bounds */
             /* Fail low result implies an upper bound */
             if (g <= alpha) n.upperbound=g;
-            store n.upperbound;
+           // store n.upperbound;
             /* Found an accurate minimax value - will not occur if called with zero window */
             if (g > alpha && g < beta){
-                n.lowerbound = g;
-                n.upperbound = g;
-                store n.lowerbound, n.upperbound;
+             //   n.lowerbound = g;
+               // n.upperbound = g;
+               // store n.lowerbound, n.upperbound;
             }
             /* Fail high result implies a lower bound */
             if (g >= beta) {
-                n.lowerbound = g;
-                store n.lowerbound;
+               // n.lowerbound = g;
+               // store n.lowerbound;
             }
         }
     return g;
 
 
+    }
+
+    private boolean retrieve(MDTfNode n) {
+        return false;
     }
 
 

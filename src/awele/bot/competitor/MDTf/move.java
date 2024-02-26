@@ -12,7 +12,7 @@ public class move {
     }
 
     public static Comparator<? super move> get_score() {
-        return score;
+        return null; //TODO comparaison correcte
     }
 
     public int getId() {

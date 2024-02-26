@@ -98,4 +98,9 @@ public class MDTfNode  extends Nodale
     public MDTfNode getBrother() {
         return null;
     }
+
+    public boolean victory() {
+        //if (this.board.playMoveSimulationBoard(1,this.getDecision()).
+        return false; // savoir si partie fine TODO
+    }
 }
