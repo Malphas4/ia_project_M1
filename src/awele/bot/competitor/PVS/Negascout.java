@@ -26,8 +26,8 @@ public class Negascout extends DemoBot {
 
     @Override
     public double[] getDecision(Board board) {
-        int alpha = - (board.getNbSeeds() + board.getScore(board.getCurrentPlayer()) + board.getOpponentSeeds() + 1);
-        int beta = - alpha;
+        int alpha = Integer.MIN_VALUE;
+        int beta = Integer.MAX_VALUE;
         double[] decision = new double[Board.NB_HOLES];
         for (int i = 0; i < Board.NB_HOLES; i++) {
             decision[i] = negascout(board, alpha, beta, 0);
@@ -57,14 +57,16 @@ public class Negascout extends DemoBot {
         b = a + 1;                       set new null window
     }
     return a;*/
-    public int negascout(Board board, int alpha, int beta, int depth) {
-        int a, b, t;
-        if (depth == MAXDEPTH || board.getNbSeeds() == 0)
-            return board.getScore(board.getCurrentPlayer());
+    public double negascout(Board board, double alpha, double beta, int depth) {
+        double a, b, t;
+        if (depth == MAXDEPTH)
+            return evaluateRisk(board);
         a = alpha;
         b = beta;
+
         boolean[] validMoves = board.validMoves(board.getCurrentPlayer());
-        for (int i = 0 ; i < Board.NB_HOLES ; i++) {
+
+        for (int i = Board.NB_HOLES - 1 ; 0 <= i ; i--) {
             if (validMoves[i]) {
                 double[] decision = new double[Board.NB_HOLES];
                 decision[i] = 1;
@@ -82,5 +84,33 @@ public class Negascout extends DemoBot {
             }
         }
         return a;
+    }
+
+    /**
+     * Evaluation du risque
+     * Formule : R = P x G
+     * où P est la probabilité de l'évènement = probabilité d'un coup permettant de récupérer des graines
+     * où G est la gravité : nombre de graines que le joueur peut récupérer
+     * @param board Le plateau à évaluer
+     * @return Le risque
+     */
+    public double evaluateRisk(Board board) {
+        int[] opponentHoles = board.getOpponentHoles();
+        int[] currentPlayerHoles = board.getPlayerHoles();
+        int nbRisk = 0;
+        int gravity = 0;
+        for (int i = 0; i < Board.NB_HOLES; i++) {
+            int opponentSeed = opponentHoles[i];
+            int iRemaining = (i + opponentSeed) % Board.NB_HOLES;
+            if (currentPlayerHoles[iRemaining] == 2 || currentPlayerHoles[iRemaining] == 3) {
+                for (int j = 0; j < iRemaining; j++) {
+                    int seed = currentPlayerHoles[j];
+                    gravity += seed;
+                }
+                nbRisk++;
+            }
+        }
+        double probability = (double) nbRisk / opponentHoles.length;
+        return probability * gravity;
     }
 }
