@@ -32,7 +32,7 @@ public class Negascout extends DemoBot {
         double[] decision = new double[Board.NB_HOLES];
 
         boolean[] validMoves = board.validMoves(board.getCurrentPlayer());
-        List<Integer> indexOrder = orderArrayIndex(board).reversed();
+        List<Integer> indexOrder = orderArrayIndex(board);
 
         for (int i = 0; i < Board.NB_HOLES; i++) {
             if (validMoves[indexOrder.get(i)]) {
@@ -60,7 +60,7 @@ public class Negascout extends DemoBot {
             double[] decision = new double[Board.NB_HOLES];
             decision[i] = 1;
             try {
-                risks.put(i, evaluateScoreRisk(board.playMoveSimulationBoard(board.getCurrentPlayer(), decision)));
+                risks.put(i, evaluateRiskReward(board.playMoveSimulationBoard(board.getCurrentPlayer(), decision)));
             } catch (InvalidBotException ignored) {
             }
         }
@@ -71,7 +71,7 @@ public class Negascout extends DemoBot {
             result.add((Integer) entry.getKey());
         }
 
-        return result;
+        return result.reversed();
     }
 
     /*int a, b, t, i;
@@ -103,7 +103,7 @@ public class Negascout extends DemoBot {
         if (depth == MAXDEPTH || n == 0)
             return evaluateScoreRisk(board);
 
-        List<Integer> indexOrder = orderArrayIndex(board).reversed();
+        List<Integer> indexOrder = orderArrayIndex(board);
 
         for (int i = 0 ; i < Board.NB_HOLES ; i++) {
             if (validMoves[indexOrder.get(i)]) {
