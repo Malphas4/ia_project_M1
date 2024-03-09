@@ -7,7 +7,7 @@ import awele.core.InvalidBotException;
 
 public class Negascout extends DemoBot {
 
-    private final static int MAXDEPTH = 10;
+    private final static int MAXDEPTH = 7;
 
     public Negascout() throws InvalidBotException {
         setBotName("Negascout");
@@ -59,24 +59,27 @@ public class Negascout extends DemoBot {
     return a;*/
     public int negascout(Board board, int alpha, int beta, int depth) {
         int a, b, t;
-        if (depth == MAXDEPTH)
+        if (depth == MAXDEPTH || board.getNbSeeds() == 0)
             return board.getScore(board.getCurrentPlayer());
         a = alpha;
         b = beta;
+        boolean[] validMoves = board.validMoves(board.getCurrentPlayer());
         for (int i = 0 ; i < Board.NB_HOLES ; i++) {
-            double[] decision = new double[Board.NB_HOLES];
-            decision[i] = 1;
-            Board copy;
-            try {
-                copy = board.playMoveSimulationBoard(board.getCurrentPlayer(), decision);
-                t = - negascout(copy, -b, -a, depth + 1);
-                if ( (t > a) && (t < beta) && (i > 0) && (depth < MAXDEPTH) )
-                    a = - negascout(copy, -beta, -t, depth + 1);
-                a = Math.max(a, t);
-                if (a >= beta)
-                    return a;
-                b = a + 1;
-            } catch (InvalidBotException ignored) {}
+            if (validMoves[i]) {
+                double[] decision = new double[Board.NB_HOLES];
+                decision[i] = 1;
+                Board copy;
+                try {
+                    copy = board.playMoveSimulationBoard(board.getCurrentPlayer(), decision);
+                    t = -negascout(copy, -b, -a, depth + 1);
+                    if ((t > a) && (t < beta) && (i > 0) && (depth < MAXDEPTH))
+                        a = -negascout(copy, -beta, -t, depth + 1);
+                    a = Math.max(a, t);
+                    if (a >= beta)
+                        return a;
+                    b = a + 1;
+                } catch(InvalidBotException ignored) {}
+            }
         }
         return a;
     }
