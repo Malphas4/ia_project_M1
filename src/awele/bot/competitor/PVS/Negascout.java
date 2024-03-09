@@ -60,7 +60,7 @@ public class Negascout extends DemoBot {
             double[] decision = new double[Board.NB_HOLES];
             decision[i] = 1;
             try {
-                risks.put(i, evaluateRiskReward(board.playMoveSimulationBoard(board.getCurrentPlayer(), decision)));
+                risks.put(i, evaluateScoreRisk(board.playMoveSimulationBoard(board.getCurrentPlayer(), decision)));
             } catch (InvalidBotException ignored) {
             }
         }
