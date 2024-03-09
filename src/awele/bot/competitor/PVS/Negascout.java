@@ -1,11 +1,15 @@
 package awele.bot.competitor.PVS;
 
 import awele.bot.CompetitorBot;
+import awele.bot.DemoBot;
 import awele.core.Board;
+import awele.core.InvalidBotException;
 
-public class Negascout/* extends CompetitorBot*/ {/*
+public class Negascout extends DemoBot {
 
-    public GeneBot() throws InvalidBotException {
+    private final static int MAXDEPTH = 10;
+
+    public Negascout() throws InvalidBotException {
         setBotName("Negascout");
         setAuthors("Rozen & Malphas");
     }
@@ -22,35 +26,58 @@ public class Negascout/* extends CompetitorBot*/ {/*
 
     @Override
     public double[] getDecision(Board board) {
-        return new double[0];
+        int alpha = - (board.getNbSeeds() + board.getScore(board.getCurrentPlayer()) + board.getOpponentSeeds() + 1);
+        int beta = - alpha;
+        double[] decision = new double[Board.NB_HOLES];
+        for (int i = 0; i < Board.NB_HOLES; i++) {
+            decision[i] = negascout(board, alpha, beta, 0);
+        }
+        return decision;
     }
 
     @Override
     public void learn() {
 
     }
-        /*Algo
-        value = NegaScout(-(alpha+1),-alpha)
-        if(value > alpha && value < beta && depth > 1) {
-            value2 = NegaScout(-beta,-value)
-            value = max(value,value2);
+
+
+    /*int a, b, t, i;
+    if ( d == maxdepth )
+        return Evaluate(p);                        leaf node
+    determine successors p_1,...,p_w of p;
+    a = alpha;
+    b = beta;
+    for ( i = 1; i <= w; i++ ) {
+        t = -NegaScout ( p_i, -b, -a );
+        if ( (t > a) && (t < beta) && (i > 1) && (d < maxdepth-1) )
+            a = -NegaScout ( p_i, -beta, -t );      re-search
+        a = max( a, t );
+        if ( a >= beta )
+            return a;                                 cut-off
+        b = a + 1;                       set new null window
+    }
+    return a;*/
+    public int negascout(Board board, int alpha, int beta, int depth) {
+        int a, b, t;
+        if (depth == MAXDEPTH)
+            return board.getScore(board.getCurrentPlayer());
+        a = alpha;
+        b = beta;
+        for (int i = 0 ; i < Board.NB_HOLES ; i++) {
+            double[] decision = new double[Board.NB_HOLES];
+            decision[i] = 1;
+            Board copy;
+            try {
+                copy = board.playMoveSimulationBoard(board.getCurrentPlayer(), decision);
+                t = - negascout(copy, -b, -a, depth + 1);
+                if ( (t > a) && (t < beta) && (i > 0) && (depth < MAXDEPTH) )
+                    a = - negascout(copy, -beta, -t, depth + 1);
+                a = Math.max(a, t);
+                if (a >= beta)
+                    return a;
+                b = a + 1;
+            } catch (InvalidBotException ignored) {}
         }
-
-
-    function pvs(node, depth, α, β, color) is
-    if depth = 0 or node is a terminal node then
-        return color × the heuristic value of node
-    for each child of node do
-        if child is first child then
-            score := −pvs(child, depth − 1, −β, −α, −color)
-        else
-            score := −pvs(child, depth − 1, −α − 1, −α, −color) (* search with a null window *)
-            if α < score < β then
-                score := −pvs(child, depth − 1, −β, −α, −color) (* if it failed high, do a full re-search *)
-        α := max(α, score)
-        if α ≥ β then
-            break (* beta cut-off *)
-    return α
-
-    * */
+        return a;
+    }
 }
