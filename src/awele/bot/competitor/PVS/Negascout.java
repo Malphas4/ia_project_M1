@@ -8,7 +8,7 @@ import java.util.*;
 
 public class Negascout extends DemoBot {
 
-    private final static int MAXDEPTH = 7;
+    private final static int MAXDEPTH = 9;
 
     public Negascout() throws InvalidBotException {
         setBotName("Negascout");
@@ -71,7 +71,9 @@ public class Negascout extends DemoBot {
             result.add((Integer) entry.getKey());
         }
 
-        return result.reversed();
+//        return result.reversed();
+      return result;
+
     }
 
     /*int a, b, t, i;
