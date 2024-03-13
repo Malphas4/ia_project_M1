@@ -1,7 +1,6 @@
-package awele.bot.competitor.negamax;
-
+package awele.bot.competitor.NegaMax;
 import awele.bot.CompetitorBot;
-import awele.bot.competitor.negamax.NegaMaxNode;
+import awele.bot.competitor.NegaMax.NegaMaxNode;
 import awele.core.Board;
 import awele.core.InvalidBotException;
 
@@ -20,7 +19,7 @@ public class NegaMaxBot extends CompetitorBot {
      */
     public NegaMaxBot() throws InvalidBotException {
         this.setBotName("NegaMax3 Profondeur = " + MAX_DEPTH);
-        this.addAuthor("jamal valizadeh - Oleksandr Stetsenko");
+        this.setAuthors("Weber","Ly");
     }
 
     /**
@@ -29,7 +28,7 @@ public class NegaMaxBot extends CompetitorBot {
      */
     @Override
     public void initialize() {
-        NegaMaxNode.initialize(NegaMaxBot.MAX_DEPTH);
+        NegaMaxNode.initialize(MAX_DEPTH);
     }
 
     /**

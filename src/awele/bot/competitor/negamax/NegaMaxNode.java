@@ -1,7 +1,10 @@
-package awele.bot.competitor.negamax;
+package awele.bot.competitor.NegaMax;
 
+import awele.bot.competitor.MinMaxModif.MinMaxNode;
 import awele.core.Board;
 import awele.core.InvalidBotException;
+
+import java.util.HashMap;
 
 /**
  * @author Alexandre Blansché Noeud d'un arbre MinMax
@@ -25,6 +28,8 @@ public class NegaMaxNode {
      * Évaluation des coups selon MinMax
      */
     private final double[] decision;
+    private static HashMap<String, double[]> transpositionTable;
+
 
 
     /**
@@ -37,6 +42,16 @@ public class NegaMaxNode {
     public NegaMaxNode(Board board, double depth, int myTour, int opponentTour, double a, double b) {
         this.depth = depth;
         /* On crée index de notre situation */
+
+
+        // Ctable de transposition
+        String stateKey = board.toString();
+        //System.out.println(transpositionTable.size());
+        if (transpositionTable.containsKey(stateKey)) {
+            decision = transpositionTable.get(stateKey);
+            //System.out.println("Déjà vu : " + stateKey + " : decision : " + Arrays.toString(decision));
+            return;
+        }
 
         /* On crée un tableau des évaluations des coups à jouer pour chaque situation possible */
         this.decision = new double[Board.NB_HOLES];
@@ -53,13 +68,13 @@ public class NegaMaxNode {
                 /* On copie la grille de jeu et on joue le coup sur la copie */
                 // Board copy = (Board) board.clone();
                 try {
-                    //int score_tmp = copy.playMoveSimulationScore(copy.getCurrentPlayer(), decision);
                     copy = board.playMoveSimulationBoard(myTour, decisionTemp);
-                    /* Si la partie est terminée, on évalue la situation */
-                    if ((copy.getScore(myTour) < 0) || (copy.getScore(opponentTour) >= 25)
-                                || (copy.getNbSeeds() <= 6) || !(depth < NegaMaxNode.maxDepth))
+                    if ((copy.getScore(myTour) < 0) || (copy.getScore(opponentTour) >= 25) || (copy.getNbSeeds() <= 6) || !(depth < NegaMaxNode.maxDepth)) {
                         this.decision[i] = scoreEntireBoardById(copy, myTour, opponentTour);
-                        /* Sinon, on explore les coups suivants */
+
+                        //mise à jour de la table
+                        transpositionTable.put(stateKey, decision);
+                    }
                     else {
 
                         /* Si le noeud n'a pas encore été calculé, on le construit */
@@ -73,6 +88,9 @@ public class NegaMaxNode {
                          * Sinon (si la profondeur maximale est atteinte), on évalue la situation
                          * actuelle
                          */
+                        //ajout dans la table de transposition
+                        transpositionTable.put(stateKey, decision);
+
 
                     }
                     /*
@@ -96,14 +114,15 @@ public class NegaMaxNode {
             }
         }
     }
-
-
     /**
      * Initialisation
      */
-    protected static void initialize(int maxDepth) {
+    public static void initialize(int maxDepth) {
         NegaMaxNode.maxDepth = maxDepth;
+        transpositionTable = new HashMap<String, double[]>();
     }
+
+
 
 
     private int scoreEntireBoardById(Board board, int myTour, int opponentTour) {
@@ -141,12 +160,13 @@ public class NegaMaxNode {
     }
 
 
+
     /**
      * L'évaluation de chaque coup possible pour le noeud
      *
      * @return
      */
-    double[] getDecision() {
+    public double[] getDecision() {
         return this.decision;
     }
 }
