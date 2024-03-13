@@ -99,7 +99,9 @@ public class Negascout extends CompetitorBot {
             result.add((Integer) entry.getKey());
         }
 
-        return result.reversed();
+//        return result.reversed();
+      return result;
+
     }
 
     /**
