@@ -1,19 +1,33 @@
 package awele.bot.competitor.PVS;
 
+import awele.bot.CompetitorBot;
 import awele.bot.DemoBot;
+import awele.bot.competitor.MinMaxModif.MinMaxNode;
 import awele.core.Board;
 import awele.core.InvalidBotException;
 
 import java.util.*;
 
-public class Negascout extends DemoBot {
+public class Negascout extends CompetitorBot {
 
-    private final static int MAXDEPTH = 7;
+    private final static int MAXDEPTH = 9;
 
+    ////////////////////////////////////////
+    // Déclaration des constructeurs
+    ////////////////////////////////////////
+
+    /**
+     * Constructeur par défaut
+     * @throws InvalidBotException
+     */
     public Negascout() throws InvalidBotException {
         setBotName("Negascout");
         setAuthors("Rozen & Malphas");
     }
+
+    ////////////////////////////////////////
+    // Définition des méthodes surchargés
+    ////////////////////////////////////////
 
     @Override
     public void initialize() {
@@ -32,14 +46,14 @@ public class Negascout extends DemoBot {
         double[] decision = new double[Board.NB_HOLES];
 
         boolean[] validMoves = board.validMoves(board.getCurrentPlayer());
-        List<Integer> indexOrder = orderArrayIndex(board);
+        /*List<Integer> indexOrder = orderArrayIndex(board);*/
 
         for (int i = 0; i < Board.NB_HOLES; i++) {
-            if (validMoves[indexOrder.get(i)]) {
+            if (validMoves[i]) {
                 try {
                     double [] sim = new double[Board.NB_HOLES];
-                    sim[indexOrder.get(i)] = 1;
-                    decision[indexOrder.get(i)] = -negascout(board.playMoveSimulationBoard(board.getCurrentPlayer(), sim), -beta, -alpha, 1);
+                    sim[i] = 1;
+                    decision[i] = -negascout(board.playMoveSimulationBoard(board.getCurrentPlayer(), sim), -beta, -alpha, 1);
                 } catch (InvalidBotException ignored) {
                 }
             }
@@ -52,10 +66,22 @@ public class Negascout extends DemoBot {
 
     }
 
+    ////////////////////////////////////////
+    // Définition des méthodes de classes
+    ////////////////////////////////////////
+
+    /**
+     * Méthode qui s'arrange pour retourner la liste ordonnée des indexs selon une heuristique
+     * @param board Le plateau de jeu
+     * @return Liste d'index ordonnée selon h(x)
+     */
     public List<Integer> orderArrayIndex(Board board) {
+        // Création de la liste d'index
         List<Integer> result = new ArrayList<>();
 
+        // Création de la Map <index, heuristique_valeur>
         Map<Integer, Double> risks = new LinkedHashMap<>();
+
         for (int i = 0; i < Board.NB_HOLES; i++) {
             double[] decision = new double[Board.NB_HOLES];
             decision[i] = 1;
@@ -64,9 +90,11 @@ public class Negascout extends DemoBot {
             } catch (InvalidBotException ignored) {
             }
         }
+        // Triage de la map par rapport à ces valeurs
         List<Map.Entry<Integer, Double>> list = new ArrayList<>(risks.entrySet());
         list.sort(Map.Entry.comparingByValue());
 
+        // Ajout dans la liste de résultat dans l'ordre les indexs de la map triées
         for (Map.Entry entry : list) {
             result.add((Integer) entry.getKey());
         }
@@ -74,22 +102,14 @@ public class Negascout extends DemoBot {
         return result.reversed();
     }
 
-    /*int a, b, t, i;
-    if ( d == maxdepth )
-        return Evaluate(p);                        leaf node
-    determine successors p_1,...,p_w of p;
-    a = alpha;
-    b = beta;
-    for ( i = 1; i <= w; i++ ) {
-        t = -NegaScout ( p_i, -b, -a );
-        if ( (t > a) && (t < beta) && (i > 1) && (d < maxdepth-1) )
-            a = -NegaScout ( p_i, -beta, -t );      re-search
-        a = max( a, t );
-        if ( a >= beta )
-            return a;                                 cut-off
-        b = a + 1;                       set new null window
-    }
-    return a;*/
+    /**
+     * Méthode récursive permettant de lancer l'algorithme NegaScout
+     * @param board Plateau de jeu
+     * @param alpha Alpha
+     * @param beta Beta
+     * @param depth Profondeur actuel
+     * @return Une valeur de décision
+     */
     public double negascout(Board board, double alpha, double beta, int depth) {
         double a, b, t;
         a = alpha;
@@ -101,19 +121,19 @@ public class Negascout extends DemoBot {
             if (valid) n++;
 
         if (depth == MAXDEPTH || n == 0)
-            return evaluateScoreRisk(board);
+            return customizedScore(board);
 
-        List<Integer> indexOrder = orderArrayIndex(board);
+        /*List<Integer> indexOrder = orderArrayIndex(board);*/
 
-        for (int i = 0 ; i < Board.NB_HOLES ; i++) {
-            if (validMoves[indexOrder.get(i)]) {
+        for (int i = Board.NB_HOLES - 1 ; 0 <= i ; i--) {
+            if (validMoves[i]) {
                 double[] decision = new double[Board.NB_HOLES];
-                decision[indexOrder.get(i)] = 1;
+                decision[i] = 1;
                 Board copy;
                 try {
                     copy = board.playMoveSimulationBoard(board.getCurrentPlayer(), decision);
                     t = -negascout(copy,  -b, -a, depth + 1);
-                    if ((t > a) && (t < beta) && (indexOrder.get(i) < Board.NB_HOLES) && (depth < MAXDEPTH - 1))
+                    if ((t > a) && (t < beta) && (i < Board.NB_HOLES - 1) && (depth < MAXDEPTH - 1))
                         a = -negascout(copy, -beta, -t, depth + 1);
                     a = Math.max(a, t);
                     if (a >= beta)
@@ -173,6 +193,47 @@ public class Negascout extends DemoBot {
         double m1 = 2 * board.getScore(board.getCurrentPlayer()) + v2;
         double m2 = 2 * board.getScore(1 - board.getCurrentPlayer()) + v1;
         return m1 - m2;
+    }
+
+    private int customizedScore(Board board){
+        int myScore = board.getScore(board.getCurrentPlayer());
+        int oppScore = board.getScore(1 - board.getCurrentPlayer());
+
+        // Start of game strategy
+        int emptyCount = 0;
+        int nonEmptyCount = 0;
+        int myMobility = 0;
+        int oppMobility = 0;
+        int myGranaryScore = 0;
+        int oppVulnerableCount = 0;
+
+        int mySeedsInHand = board.getPlayerSeeds();
+        int oppSeedsInHand = Board.otherPlayer(board.getCurrentPlayer());
+        for (int i = 0; i < 6; i++) {
+            if (board.getPlayerHoles()[i] == 0)
+                emptyCount++;
+            else if (board.getPlayerHoles()[i] > 2)
+                nonEmptyCount++;
+
+            if (board.validMoves(board.getCurrentPlayer())[i])
+                myMobility++;
+            if (board.validMoves(Board.otherPlayer(board.getCurrentPlayer()))[i])
+                oppMobility++;
+            if (board.getPlayerHoles()[i] >= 2 * (6 - i))
+                myGranaryScore += board.getPlayerHoles()[i];
+            if (board.getOpponentHoles()[i] < 2)
+                oppVulnerableCount++;
+
+        }
+        int startScore = 10 * (emptyCount - nonEmptyCount) + 2 * (myMobility - oppMobility);
+
+        // Middle of game strategy
+        int middleScore = myGranaryScore + 5 * oppVulnerableCount;
+
+        // Bonus for having more seeds in hand
+        int seedBonus = 5 * (mySeedsInHand - oppSeedsInHand);
+
+        return 20 * (myScore - oppScore) + startScore + middleScore;
     }
 
 }
