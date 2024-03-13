@@ -122,7 +122,7 @@ public class Negascout extends CompetitorBot {
         b = beta;
 
         // table de transposition
-        String stateKey = board.toString();
+        String stateKey = String.valueOf(b);
         //System.out.println(transpositionTable.size());
         if (TT.containsKey(stateKey)) {
             decision = TT.get(stateKey);
@@ -146,14 +146,20 @@ public class Negascout extends CompetitorBot {
                 try {
                     copy = board.playMoveSimulationBoard(board.getCurrentPlayer(), decision);
                     t = -negascout(copy,  -b, -a, depth + 1);
-                    if ((t > a) && (t < beta) && (i < Board.NB_HOLES - 1) && (depth < MAXDEPTH - 1))
+                    if ((t > a) && (t < beta) && (i < Board.NB_HOLES - 1) && (depth < MAXDEPTH - 1)) {
                         a = -negascout(copy, -beta, -t, depth + 1);
+                        }
                     a = Math.max(a, t);
-                    if (a >= beta)
+                    if (a >= beta) {
+                        TT.put(stateKey, decision);
                         return a;
+                    }
+                    if(b<t)
+                        TT.put(stateKey, decision);
                     b = a + 1;
+
                 } catch(InvalidBotException ignored) {}
-                TT.put(stateKey, decision);
+
             }
         }
         return a;
