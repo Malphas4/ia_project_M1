@@ -1,7 +1,7 @@
 package awele.bot.competitor.negamax;
 
 import awele.bot.CompetitorBot;
-import awele.bot.competitor.negamax2.NegaMaxNode;
+import awele.bot.competitor.negamax.NegaMaxNode;
 import awele.core.Board;
 import awele.core.InvalidBotException;
 
@@ -43,7 +43,13 @@ public class NegaMaxBot extends CompetitorBot {
      */
     @Override
     public double[] getDecision(Board board) {
-        return new NegaMaxNode(board, 0, board.getCurrentPlayer(), Board.otherPlayer(board.getCurrentPlayer()), -9999, 9999).getDecision();
+        return new NegaMaxNode(
+                    board, 0,
+                    board.getCurrentPlayer(),
+                    Board.otherPlayer(board.getCurrentPlayer()),
+                    Double.MIN_VALUE,
+                    Double.MAX_VALUE)
+                .getDecision();
     }
 
     /**
