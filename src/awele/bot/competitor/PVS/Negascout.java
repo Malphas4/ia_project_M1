@@ -11,6 +11,8 @@ import java.util.*;
 public class Negascout extends CompetitorBot {
 
     private final static int MAXDEPTH = 9;
+    private static HashMap<String, double[]> TT;
+    double[] decision ;
 
     ////////////////////////////////////////
     // Déclaration des constructeurs
@@ -31,6 +33,8 @@ public class Negascout extends CompetitorBot {
 
     @Override
     public void initialize() {
+        TT = new HashMap<String, double[]>();
+
 
     }
 
@@ -117,6 +121,13 @@ public class Negascout extends CompetitorBot {
         a = alpha;
         b = beta;
 
+        // table de transposition
+        String stateKey = board.toString();
+        //System.out.println(transpositionTable.size());
+        if (TT.containsKey(stateKey)) {
+            decision = TT.get(stateKey);
+        }
+
         boolean[] validMoves = board.validMoves(board.getCurrentPlayer());
         int n = 0;
         for (boolean valid : validMoves)
@@ -142,10 +153,12 @@ public class Negascout extends CompetitorBot {
                         return a;
                     b = a + 1;
                 } catch(InvalidBotException ignored) {}
+                TT.put(stateKey, decision);
             }
         }
         return a;
     }
+
 
     /**
      * Evaluation du risque => Pas bon
